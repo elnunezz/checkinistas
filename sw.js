@@ -1,15 +1,17 @@
-const CACHE_NAME = 'checkinistas-v1.0.1';
+const CACHE_NAME = 'checkinistas-v1.0.2';
+const BASE_URL = 'https://elnunezz.github.io/checkinistas/';
+
 const urlsToCache = [
-  './',
-  './index.html',
-  './manifest.json',
-  './icon-192.png',
-  './icon-512.png'
+  BASE_URL,
+  BASE_URL + 'index.html',
+  BASE_URL + 'manifest.json',
+  BASE_URL + 'icon-192.png',
+  BASE_URL + 'icon-512.png'
 ];
 
 // Instalar Service Worker
 self.addEventListener('install', (event) => {
-  console.log('Service Worker: Instalando...');
+  console.log('Service Worker: Instalando v1.0.2...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
@@ -25,7 +27,7 @@ self.addEventListener('install', (event) => {
 
 // Activar Service Worker
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker: Activando...');
+  console.log('Service Worker: Activando v1.0.2...');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
@@ -56,7 +58,6 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        // Si la respuesta es válida, clonarla y guardarla
         if (response && response.status === 200) {
           const responseToCache = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
@@ -66,9 +67,8 @@ self.addEventListener('fetch', (event) => {
         return response;
       })
       .catch(() => {
-        // Si falla la red, intentar obtener del cache
         return caches.match(event.request).then((response) => {
-          return response || caches.match('./index.html');
+          return response || caches.match(BASE_URL + 'index.html');
         });
       })
   );
