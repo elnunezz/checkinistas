@@ -27,63 +27,67 @@
     
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      /* Gradiente azul-violeta parecido al de la app principal */
+      background: radial-gradient(circle at top left, #6366f1 0, #4f46e5 35%, #7c3aed 60%, #1e293b 100%);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 20px;
+      color: #f9fafb;
     }
     
     .container {
-      background: white;
+      background: rgba(15, 23, 42, 0.9);
       border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      padding: 32px 28px 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
       text-align: center;
-      max-width: 500px;
+      max-width: 480px;
       width: 100%;
+      border: 1px solid rgba(148, 163, 184, 0.5);
     }
     
     .logo {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 30px;
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 24px;
       background: #FFE600;
-      border-radius: 30px;
+      border-radius: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 60px;
-      box-shadow: 0 10px 30px rgba(255, 230, 0, 0.3);
+      font-size: 52px;
+      box-shadow: 0 10px 30px rgba(255, 230, 0, 0.45);
     }
     
     h1 {
-      color: #333;
-      margin-bottom: 10px;
-      font-size: 32px;
+      color: #e5e7eb;
+      margin-bottom: 8px;
+      font-size: 28px;
     }
     
     p {
-      color: #666;
-      margin-bottom: 30px;
+      color: #cbd5f5;
+      margin-bottom: 24px;
       line-height: 1.6;
+      font-size: 15px;
     }
     
     .loading {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
     }
     
     .spinner {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #667eea;
+      border: 4px solid rgba(148, 163, 184, 0.3);
+      border-top: 4px solid #FFE600;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       animation: spin 1s linear infinite;
     }
     
@@ -94,12 +98,13 @@
     
     .error {
       display: none;
-      background: #fee;
-      border: 2px solid #fcc;
+      background: rgba(254, 242, 242, 0.95);
+      border: 2px solid #fecaca;
       border-radius: 10px;
-      padding: 20px;
+      padding: 16px;
       margin-top: 20px;
-      color: #c33;
+      color: #b91c1c;
+      font-size: 14px;
     }
     
     .error.show {
@@ -108,11 +113,13 @@
     
     .install-prompt {
       display: none;
-      background: #e3f2fd;
+      background: rgba(219, 234, 254, 0.95);
       border: 2px solid #2196F3;
       border-radius: 10px;
-      padding: 20px;
+      padding: 16px;
       margin-top: 20px;
+      color: #111827;
+      font-size: 14px;
     }
     
     .install-prompt.show {
@@ -123,9 +130,9 @@
       background: #667eea;
       color: white;
       border: none;
-      padding: 15px 30px;
+      padding: 12px 24px;
       border-radius: 10px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
       margin-top: 10px;
@@ -139,8 +146,8 @@
     }
     
     .version {
-      margin-top: 30px;
-      color: #999;
+      margin-top: 24px;
+      color: #9ca3af;
       font-size: 12px;
     }
     
@@ -188,7 +195,7 @@
   <iframe id="app-frame" src="" title="Checkinistas App"></iframe>
   
   <script>
-    // URL de tu Apps Script
+    // URL de tu Apps Script (implementación actual)
     const APP_URL = 'https://script.google.com/a/macros/mercadolibre.com/s/AKfycbzk7T6axveFKFFhjeWWDZ_gzhCNv8kufVFxBuPzMu--pL9uthiRqSy1rlY7OpreObfvnw/exec';
     
     // Registrar Service Worker
