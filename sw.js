@@ -1,4 +1,4 @@
-const CACHE_NAME = 'checkinistas-v1.0.2';
+const CACHE_NAME = 'checkinistas-v1.0.3';
 const BASE_URL = 'https://elnunezz.github.io/checkinistas/';
 
 const urlsToCache = [
@@ -11,7 +11,7 @@ const urlsToCache = [
 
 // Instalar Service Worker
 self.addEventListener('install', (event) => {
-  console.log('Service Worker: Instalando v1.0.2...');
+  console.log('Service Worker: Instalando v1.0.3...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
@@ -27,7 +27,7 @@ self.addEventListener('install', (event) => {
 
 // Activar Service Worker
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker: Activando v1.0.2...');
+  console.log('Service Worker: Activando v1.0.3...');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
