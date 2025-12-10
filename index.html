@@ -11,35 +11,22 @@
   
   <title>Checkinistas - Control de Horas</title>
   
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  
-  <!-- Manifest -->
   <link rel="manifest" href="manifest.json">
   
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: radial-gradient(circle at top left, #6366f1 0, #4f46e5 35%, #7c3aed 60%, #1e293b 100%);
       min-height: 100vh;
-      margin: 0;
-      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #f9fafb;
-      overflow: hidden; /* el shell no scrollea; lo hace el iframe */
     }
-    
     .container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       background: rgba(15, 23, 42, 0.9);
       border-radius: 20px;
       padding: 32px 28px 28px;
@@ -49,7 +36,6 @@
       width: 100%;
       border: 1px solid rgba(148, 163, 184, 0.5);
     }
-    
     .logo {
       width: 96px;
       height: 96px;
@@ -62,71 +48,6 @@
       font-size: 52px;
       box-shadow: 0 10px 30px rgba(255, 230, 0, 0.45);
     }
-    
-    h1 {
-      color: #e5e7eb;
-      margin-bottom: 8px;
-      font-size: 28px;
-    }
-    
-    p {
-      color: #cbd5f5;
-      margin-bottom: 24px;
-      line-height: 1.6;
-      font-size: 15px;
-    }
-    
-    .loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-    
-    .spinner {
-      border: 4px solid rgba(148, 163, 184, 0.3);
-      border-top: 4px solid #FFE600;
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .error {
-      display: none;
-      background: rgba(254, 242, 242, 0.95);
-      border: 2px solid #fecaca;
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 20px;
-      color: #b91c1c;
-      font-size: 14px;
-    }
-    
-    .error.show {
-      display: block;
-    }
-    
-    .install-prompt {
-      display: none;
-      background: rgba(219, 234, 254, 0.95);
-      border: 2px solid #2196F3;
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 20px;
-      color: #111827;
-      font-size: 14px;
-    }
-    
-    .install-prompt.show {
-      display: block;
-    }
-    
     .btn {
       background: #667eea;
       color: white;
@@ -136,70 +57,22 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 16px;
       transition: all 0.3s;
-    }
-    
-    .btn:hover {
-      background: #5568d3;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-    }
-    
-    .version {
-      margin-top: 24px;
-      color: #9ca3af;
-      font-size: 12px;
-    }
-    
-    #app-frame {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    
-    #app-frame.loaded {
-      display: block;
     }
   </style>
 </head>
 <body>
-  <div class="container" id="splash">
+  <div class="container">
     <div class="logo">⚙️</div>
     <h1>Checkinistas</h1>
     <p>Control de horas para maquinistas</p>
-    
-    <div class="loading" id="loading">
-      <div class="spinner"></div>
-      <p>Cargando aplicación...</p>
-    </div>
-    
-    <div class="error" id="error">
-      <strong>⚠️ Error de conexión</strong>
-      <p id="error-message"></p>
-      <button class="btn" onclick="location.reload()">Reintentar</button>
-    </div>
-    
-    <div class="install-prompt" id="install-prompt">
-      <strong>📱 Instalar aplicación</strong>
-      <p>Instala Checkinistas en tu dispositivo para acceso rápido</p>
-      <button class="btn" id="install-button">Instalar</button>
-    </div>
-    
-    <div class="version">v1.0.0</div>
+    <button class="btn" onclick="window.location.href='https://script.google.com/a/macros/mercadolibre.com/s/AKfycbzk7T6axveFKFFhjeWWDZ_gzhCNv8kufVFxBuPzMu--pL9uthiRqSy1rlY7OpreObfvnw/exec'">
+      Abrir aplicación
+    </button>
   </div>
-  
-  <iframe id="app-frame" src="" title="Checkinistas App"></iframe>
-  
+
   <script>
-    // URL de tu Apps Script (implementación actual)
-    const APP_URL = 'https://script.google.com/a/macros/mercadolibre.com/s/AKfycbzk7T6axveFKFFhjeWWDZ_gzhCNv8kufVFxBuPzMu--pL9uthiRqSy1rlY7OpreObfvnw/exec';
-    
-    // Registrar Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js')
@@ -207,72 +80,6 @@
           .catch(err => console.error('Error al registrar Service Worker:', err));
       });
     }
-    
-    // Cargar aplicación
-    window.addEventListener('load', () => {
-      const iframe = document.getElementById('app-frame');
-      const splash = document.getElementById('splash');
-      const loading = document.getElementById('loading');
-      const errorDiv = document.getElementById('error');
-      const errorMessage = document.getElementById('error-message');
-      
-      // Configurar iframe
-      iframe.src = APP_URL;
-      
-      // Timeout de 10 segundos
-      const timeout = setTimeout(() => {
-        loading.style.display = 'none';
-        errorDiv.classList.add('show');
-        errorMessage.textContent = 'La aplicación está tardando mucho en cargar. Verifica tu conexión a internet.';
-      }, 10000);
-      
-      // Cuando el iframe carga
-      iframe.addEventListener('load', () => {
-        clearTimeout(timeout);
-        setTimeout(() => {
-          splash.style.display = 'none';
-          iframe.classList.add('loaded');
-        }, 500);
-      });
-      
-      // Manejar errores
-      iframe.addEventListener('error', () => {
-        clearTimeout(timeout);
-        loading.style.display = 'none';
-        errorDiv.classList.add('show');
-        errorMessage.textContent = 'No se pudo cargar la aplicación. Verifica que tengas acceso a la organización.';
-      });
-    });
-    
-    // PWA Install Prompt
-    let deferredPrompt;
-    
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      
-      const installPrompt = document.getElementById('install-prompt');
-      const installButton = document.getElementById('install-button');
-      
-      // Mostrar prompt después de 3 segundos
-      setTimeout(() => {
-        installPrompt.classList.add('show');
-      }, 3000);
-      
-      installButton.addEventListener('click', async () => {
-        installPrompt.classList.remove('show');
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        console.log(`Install prompt: ${outcome}`);
-        deferredPrompt = null;
-      });
-    });
-    
-    // Detectar cuando se instala
-    window.addEventListener('appinstalled', () => {
-      console.log('PWA instalada exitosamente');
-      deferredPrompt = null;
-    });
   </script>
 </body>
 </html>
